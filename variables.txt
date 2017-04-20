@@ -1,0 +1,31 @@
+Weather
+- Rain
+- Temp
+- Air Pressure
+Location & Time
+- Ball Park
+- Time of Day
+- Distance from previous game
+- Distance Traveled last night
+Starting Pitchers
+Available Bull Pen
+Pitching Statistics
+- last 50 games
+- last 10 h/a games
+Starting Lineups
+Available Relief Pitchers
+Days Since Last Game by Player
+Production Missing (is a normal starter taking the day off)
+Batting Statistics for All Starters 
+- last 50 gameslast
+- last 10 home/away games
+- last 10 vs R/L hand pitcher
+- statistics against the opposing starter
+- against available bullpen 
+
+
+
+
+
+
+

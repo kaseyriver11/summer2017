@@ -1,31 +1,31 @@
-City,Team,ESPN
-LA Angels,Angels,LAA
-Houston,Astros,HOU
-Oakland,Athletics,OAK
-Toronto,Blue Jays,TOR
-Atlanta,Braves,ATL
-Milwaukee,Brewers,MIL
-St. Louis,Cardinals,STL
-Chicago,Cubs,CHC
-Arizona,Diamondbacks,ARI
-Los Angeles,Dodgers,LAD
-San Francisco,Giants,SF
-Cleveland,Indians,CLE
-Seatle,Mariners,SEA
-Miami,Marlins,MIA
-New York,Mets,NYM
-Washington,Nationals,WSH
-Baltimore,Orioles,BAL
-San Diego,Padres,SD
-Philadelphia,Phillies,PHI
-Pittsburgh,Pirates,PIT
-Tampa Bay,Rays,TB
-Texas,Rangers,TEX
-Cincinnati,Reds,CIN
-Boston,Red Sox,BOS
-Colorado,Rockies,COL
-Kansas City,Royals,KC
-Detriot,Tigers,DET
-Minnesota,Twins,MIN
-Chicago,White Sox,CHW
-New York,Yankees,NYY
+City,Team,Team2,ESPN,Roto
+LA Angels,Angels,Angels,LAA,LAA
+Houston,Astros,Astros,HOU,HOU
+Oakland,Athletics,Athletics,OAK,OAK
+Toronto,Blue Jays,Blue Jays,TOR,TOR
+Atlanta,Braves,Braves,ATL,ATL
+Milwaukee,Brewers,Brewers,MIL,MIL
+St. Louis,Cardinals,Cardinals,STL,STL
+Chicago,Cubs,Cubs,CHC,CHC
+Arizona,Diamondbacks,D-backs,ARI,ARI
+Los Angeles,Dodgers,Dodgers,LAD,LAD
+San Francisco,Giants,Giants,SF,SFG
+Cleveland,Indians,Indians,CLE,CLE
+Seatle,Mariners,Mariners,SEA,SEA
+Miami,Marlins,Marlins,MIA,MIA
+New York,Mets,Mets,NYM,NYM
+Washington,Nationals,Nationals,WSH,WAS
+Baltimore,Orioles,Orioles,BAL,BAL
+San Diego,Padres,Padres,SD,SDP
+Philadelphia,Phillies,Phillies,PHI,PHI
+Pittsburgh,Pirates,Pirates,PIT,PIT
+Tampa Bay,Rays,Rays,TB,TBR
+Texas,Rangers,Rangers,TEX,TEX
+Cincinnati,Reds,Reds,CIN,CIN
+Boston,Red Sox,Red Sox,BOS,BOS
+Colorado,Rockies,Rockies,COL,COL
+Kansas City,Royals,Royals,KC,KCR
+Detriot,Tigers,Tigers,DET,DET
+Minnesota,Twins,Twins,MIN,MIN
+Chicago,White Sox,White Sox,CHW,CHW
+New York,Yankees,Yankees,NYY,NYY

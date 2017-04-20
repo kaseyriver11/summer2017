@@ -5,59 +5,14 @@ Created on Fri Apr 14 16:24:11 2017
 @author: kaseyriver11
 """
 
-
 import datetime as dt 
-import calendar
 import time
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 
-
 ## Read Team Names
 team_names = pd.read_csv("data\\team_names.csv")
-
-                    ###                      ###
-                    ### --- TODAYS GAMES --- ###
-                    ###                      ###
-# What is today?
-month = dt.datetime.now().month
-if month < 10:
-    month = str(0) + str(month)
-# Create the URL and Scrap
-url = "http://m.mlb.com/schedule/2017/" + month + "/" + str(dt.datetime.now().day) + "/"
-r = requests.get(url)
-soup = BeautifulSoup(r.text, 'lxml')
-
-## Matchups
-text = soup.find_all('td', {'class' : 'schedule-matchup text-left'})
-away = []; home= [];
-for i in range(0,len(text)):
-    matchup = text[i].getText().split()
-    for j in range(0,len(matchup)):
-        if matchup[j] == "@":
-            away.append(" ".join(matchup[0:j]))
-            home.append(" ".join(matchup[(j+1):len(matchup)]))
-
-## Times & Date
-text = soup.find_all('td', {'class' : 'schedule-time text-left'})
-times = []
-for i in range(0,len(text)):
-    value = text[i].getText()
-    value = value.replace("\n", "")
-    times.append(value)
-
-games = pd.DataFrame(columns=('Away', 'Home', 'Time'))
-games['Away'] = away; games['Home'] = home; games['Time'] = times
-
-## Grab Only Todays Games!
-daybreaks = []     
-for i in range(0,(len(away)-1)):
-    if times[i+1][0:times[i+1].index(':')] < times[i][0:times[i].index(':')]:
-        daybreaks.append(i+1)
-games = games[:daybreaks[0]]
-del(text, times, daybreaks, away, home, url, r, soup, i, j, matchup, month, value)
-
 
                     ###                            ###
                     ### --- TODAYS Predictions --- ###
@@ -105,6 +60,15 @@ del(game, home, i, teams, url, words, away)
 df = df[:games.shape[0]] 
   
   
+
+
+
+
+
+
+
+
+
 ### Scrap the Vegas Odds
 url = "http://www.espn.com/mlb/lines"
 r = requests.get(url)
@@ -193,7 +157,7 @@ print(sum(df['Bet']))
 print(sum(df['Winnings']))
 
 
-df.to_csv("data\\winnings_4.14.2017.csv")
+df.to_csv("data\\winnings2.csv")
 
 
 
