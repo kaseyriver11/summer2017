@@ -1,0 +1,3 @@
+DB instance identifier 'baseball-db'
+master Username 'baseball_proj'
+master Password 'NCSUMSA2017'
