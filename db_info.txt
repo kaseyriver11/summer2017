@@ -1,3 +1,7 @@
 DB instance identifier 'baseball-db'
 master Username 'baseball_proj'
 master Password 'NCSUMSA2017'
+database name 'baseball_db'
+port 3306
+
+
