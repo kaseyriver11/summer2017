@@ -10,10 +10,19 @@ import time
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import mysql.connector
+from fuzzywuzzy import process
 
-## Read Team Names
-team_names = pd.read_csv("data\\team_names.csv")
+cnx = mysql.connector.connect(host='baseball-db.ctxqwovrv2n6.us-east-1.rds.amazonaws.com',
+                              user='baseball_proj',
+                              password='NCSUMSA2017',
+                              database='baseball_db')
+cursor = cnx.cursor()
 
+query = ("SELECT * FROM mlb_team_names")
+team_names_query = cursor.execute(query)
+team_names = pd.DataFrame(cursor.fetchall())
+team_names = team_names.rename(columns= {0:'team_id', 1:'team_name', 2:'city', 3:'team_abbr'})
 
                     ###                      ###
                     ### --- TODAYS GAMES --- ###
@@ -40,13 +49,25 @@ for i in range(0,len(text)):
             away.append(" ".join(matchup[0:j]))
             home.append(" ".join(matchup[(j+1):len(matchup)]))
 
-# Fix Home and Away Names
-for i in range(0,len(away)):
-    for j in range(0,len(team_names['Team2'])):
-        if away[i] == team_names['Team2'][j]:
-            away[i] = team_names['ESPN'][j]
-        if home[i] == team_names['Team2'][j]:
-            home[i] = team_names['ESPN'][j]
+away = [x.lower() for x in away]
+home = [x.lower() for x in home]
+
+#Function to make the team names match the names in our database table
+def match_names(scraped_team_names, db_team_names):
+  out = []
+  for name in scraped_team_names:
+    x = fuzzywuzzy.process.extract(name, db_team_names, limit = 1)[0][0]
+    out.append(x)
+
+  return pd.DataFrame(out, columns=['team_name'])
+
+away = match_names(away, team_names.team_name)
+away = away.merge(team_names, on = 'team_name')
+away = away.team_abbr
+home = match_names(home, team_names.team_name)
+home = home.merge(team_names, on = 'team_name')
+home = home.team_abbr
+
 
 ## Times & Date
 text = today[0].find_all('td', {'class' : 'schedule-time text-left'})
@@ -54,16 +75,17 @@ times = []
 for i in range(0,len(text)):
     value = text[i].getText()
     value = value.replace("\n", "")
+
     times.append(value)
 
-games = pd.DataFrame(columns=('Time', 'Away', 'Home'))
-games['Time'] = times; games['Away'] = away; games['Home'] = home
+games = pd.DataFrame(columns=('time', 'away', 'home'))
+games['time'] = times; games['away'] = away; games['home'] = home
 games.insert(0, 'Date', time.strftime("%x")) 
 games.insert(0, 'ID', "")
 for i in range(0,len(times)):
     times[i] = times[i][0:times[i].index(":")]
-games['ID'] = month + str(day) + str(year)[2:4] + "." + games['Away'] + "." + games['Home'] + "." + times 
+games['id'] = month + str(day) + str(year) + "." + games['away'] + "." + games['home'] + "." + times
 
-del(text, times, away, home, url, r, soup, i, j, matchup, month, value, day, year, team_names)
+#del(text, times, away, home, url, r, soup, i, j, matchup, month, value, day, year, team_names)
 
 
