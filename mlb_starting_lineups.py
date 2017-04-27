@@ -6,7 +6,6 @@ Created on Wed Apr 19 08:40:47 2017
 """
 
 import datetime as dt 
-import time
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -95,7 +94,7 @@ lineups['h_s_7'] = s_7[1:len(s_p):2]
 lineups['h_s_8'] = s_8[1:len(s_p):2]
 lineups['h_s_9'] = s_9[1:len(s_p):2]
 
-
+del(i,j,away,day,home,month,s_1,s_2,s_3,s_4,s_5,s_6,s_7,s_8,s_9,s_p,times,url,year,players)
 
 
 
